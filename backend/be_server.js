@@ -69,6 +69,6 @@ app.all('/', function (req, res) {
 
 app.use("/jeepme", router)
 
-app.listen(300, () => {
-    console.log("Server is running in PORT..," + 3001)
+app.listen(PORT, () => {
+    console.log("Server is running in PORT..," + PORT)
 })

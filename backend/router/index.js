@@ -9,7 +9,7 @@ const update = require('../controller/modules/update')
 const adm = require('../controller/modules/admin')
 const  admin_account = require('../controller/create_default_account')
 const admin_info = require('../controller/modules/admin_data')
-
+const login = require('../controller/modules/admin_data')
 //creating routes
 routes.route("/createroute").post((req, res) => {
     create.create_route(req,res);
@@ -58,6 +58,9 @@ routes.route("/admin").get((req,res) => {
     adm.retrieve_admin(req,res);
 })
 
+routes.route('/login/admin/:username/:password').get((req, res) => {
+    login(req.params.username, req.params.password, res);
+})
 
 // routes.post('/admin', (req, res) => {
 //     // console.log(req.body)
