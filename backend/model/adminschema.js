@@ -1,13 +1,16 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 
-let Account = new Schema({
-	username: { type: String, required: true, unique: true },
-	password: { type: String, required: true }
-})
 
-Account.pre("save", function (next) {
+  var AdminSchema = new Schema({
+      username: {type: String},
+      password: {type: String}
+      
+
+  })
+
+  AdminSchema.pre("save", function (next) {
 	if (!this.isModified("password")) {
 		return next();
 	}
@@ -15,4 +18,5 @@ Account.pre("save", function (next) {
 	next();
 });
 
-  module.exports = {Account};
+
+  module.exports = mongoose.model('Admin', AdminSchema);

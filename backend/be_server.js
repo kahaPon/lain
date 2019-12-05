@@ -20,8 +20,6 @@ mongoose.connect(dbConfig, { useNewUrlParser: true, useUnifiedTopology: true, us
     process.exit();
 });
 
-//db_config
-// require('./system/db_config')
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true, limit: "20mb" }));
@@ -59,12 +57,18 @@ app.use(bodyParser.json({ limit: "20mb" }));
 //         }
 //     })
 // })
+// const admin = require("./controller/modules/admin_data")
 
+// app.post("/jeepme/admindata", (req,res) =>{ 
+//     admin.retrieve_admin(req.body)
 
+// })
 
 app.all('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'view/index.html'));
 });
+
+
 
 
 app.use("/jeepme", router)

@@ -4,6 +4,7 @@ import { Dropdown } from 'semantic-ui-react'
 import swal from 'sweetalert'
 import home from './home.png'
 import Options from '../Options';
+import axios from 'axios';
 
 class DeleteRoute extends Component {
     constructor(props) {
@@ -14,13 +15,17 @@ class DeleteRoute extends Component {
                 { key: 'ax', value: 'Route', text: 'Route' },
             ],
             choosed: "",
+            bar: "",
+            pla: "",
             home: false
 
         }
     }
     exposedCampaignOnChange = (e, { value }) => {
         e.persist = () => { };
-        this.setState({ choosed: e.target.textContent })
+        this.setState({ bar: e.target.textContent })
+        this.setState({ pla: e.target.textContent })
+
     }
 
     OptionChoose = () => (
@@ -32,30 +37,80 @@ class DeleteRoute extends Component {
     )
 
     onselect(e) {
-        if (this.state.choosed === "Barangay") {
+        e.preventDefault();
+        // var params = {
+        //     route: this.state.bar,
+        //     places: this.state.pla
+        // }
+        if (this.state.bar === "Barangay") {
             swal({
                 title: "What barangay do you want to delete?",
                 content: "input"
             }).then((baraDelete) => {
+                axios.delete("http://localhost:3000/jeepme/deleteplaces/"+ baraDelete)
+                    .then(res => {
+                        console.log("inglahos");
+                        console.log(res)
+
+                    })
+                    .catch(err => {
+                        return err
+                    })
                 swal({
                     icon: "success",
                     title: baraDelete + " deleted successfully"
                 })
             })
-        } else {
+        }
+        if (this.state.pla === "Route") {
             swal({
-                title: "What route you want to delete?",
+                title: "What place do you want to delete?",
                 content: "input"
-            }).then((routeDelete) => {
+            }).then((plaDelete) => {
+                axios.delete("http://localhost:3000/jeepme/deleteroute/"+plaDelete)
+                    .then(res => {
+                        console.log("inglahos");
+                        console.log(res)
+
+                    })
+                    .catch(err => {
+                        return err
+                    })
                 swal({
                     icon: "success",
-                    title: routeDelete + " deleted successfully"
+                    title: plaDelete + " deleted successfully"
                 })
             })
         }
+        //  else {
+        //     swal({
+        //         title: "What route you want to delete?",
+        //         content: "input"
+        //     }).then((routeDelete) => {
+        //         swal({
+        //             icon: "success",
+        //             title: routeDelete + " deleted successfully"
+        //         })
+        //     })
+        // }
+
+        // axios.delete("http://localhost:3000/jeepme/createroute", params)
+        //     .then(res => {
+        //         console.log("inglahos");
+        //         console.log(res.data)
+
+        //     })
+        //     .catch(err => {
+        //         return err
+        //     })
+        this.setState({
+            bar: '',
+            pla: ''
+        });
+
     }
-    onclickHome(e){
-        this.setState({home: true})
+    onclickHome(e) {
+        this.setState({ home: true })
     }
     render() {
         if (!this.state.home) {

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
   var routeSchema = new Schema({
       route: String,
-      places: String
+      places: Array
 
   })
 
