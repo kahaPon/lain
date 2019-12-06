@@ -24,7 +24,6 @@ class Login extends Component {
             console.log("ing sulod");
             axios.get('http://localhost:3000/jeepme/admindata/'+ this.state.username + "/"+this.state.password)
                 .then(res => {
-                    console.log("inglahos");
                     console.log(res.data)
                     resolve(res)
                 })
@@ -32,15 +31,14 @@ class Login extends Component {
                     reject(err)
                 })
         })
-    }  
+    }
 
     onclickHandler(e) {
         if (this.state.username !== "" && this.state.password !== "") {
             console.log("edgsd");
             this.loginAuth().then(res => {
-                console.log("gesdgd");
                 if (res.data.data.body.auth) {
-                    console.log(res.data);
+                    console.log(res);
                     this.setState({ situation: true });
                     localStorage.setItem("token", res.data.data.body.accessToken)
                 } else {
@@ -62,13 +60,13 @@ class Login extends Component {
       
 
     render() {
-        if (this.state.situation) {
+        if (!this.state.situation) {
             return (
                 <center>
                     <div className="card">
                         <h1 id="admin">Admin</h1>
-                        <input autoComplete="off" placeholder="Username" type="text" className="w3-input w3-border" id="user" onChange={(e) => this.setState({username: e.target.value})}></input><br></br>
-                        <input placeholder="Password" type="password" className="w3-input w3-border" id="pass" onChange={(e) => this.setState({password: e.target.value})}></input><br></br>
+                        <input autoComplete="off" placeholder="Username" type="text" className="w3-input w3-border" id="user" onChange={(e) => this.handleChange(e)}></input><br></br>
+                        <input placeholder="Password" type="password" className="w3-input w3-border" id="pass" onChange={(e) => this.handleChange(e)}></input><br></br>
                         <button id="button" onClick={(e) => this.onclickHandler(e)}>Login</button>
                     </div>
                 </center>

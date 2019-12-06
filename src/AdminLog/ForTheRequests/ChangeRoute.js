@@ -4,6 +4,7 @@ import { Dropdown } from 'semantic-ui-react'
 import swal from 'sweetalert'
 import Options from '../Options';
 import home from './home.png'
+import axios from 'axios'
 
 class DeleteRoute extends Component {
     constructor(props) {
@@ -34,17 +35,39 @@ class DeleteRoute extends Component {
     onselect(e) {
         if (this.state.choosed === "Barangay") {
             swal({
-                title: "What barangay do you want to change?",
+                title: "What barangay do you want to update?",
                 content: "input"
-            }).then((baraChange) => {
-                console.log(baraChange)
+            }).then((toUpdate) => {
+                swal({
+                    title: "Change the " + toUpdate,
+                    content: "input"
+                }).then((values) => {
+                    axios.post("http://localhost:3000/jeepme/updateplaces", { place: toUpdate, newValue: values })
+                        .then(res => {
+                            console.log(res)
+                        })
+                        .catch(err => {
+                            return err
+                        })
+                })
             })
         } else {
             swal({
                 title: "What route you want to change?",
                 content: "input"
-            }).then((routeChange) => {
-                console.log(routeChange)
+            }).then((toChangeRoute) => {
+                swal({
+                    title: "Change the " + toChangeRoute,
+                    content: "input"
+                }).then((values) => {
+                    axios.post("http://localhost:3000/jeepme/updateroute", { place: toChangeRoute, newValue: values })
+                        .then(res => {
+                            console.log(res)
+                        })
+                        .catch(err => {
+                            return err
+                        })
+                })
             })
         }
     }

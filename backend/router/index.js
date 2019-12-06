@@ -49,12 +49,13 @@ routes.route("/retrieveAll").get((req,res) => {
 })
 
 //updating routes
-routes.route("/updateroute/:id").post((req,res) => {
-    update.update_route(req,res);
+routes.route("/updateroute").post((req,res) => {
+    update.update_route(req.body,res);
 })
 
-routes.route("/updateplaces/:id").post((req,res) => {
-    update.update_places(req,res);
+// updating places
+routes.route("/updateplaces").post((req,res) => {
+    update.update_places(req.body,res);
 })
 
 //getting data from admin

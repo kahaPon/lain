@@ -1,13 +1,9 @@
 const route_model = require('../../model/route')
 
 let update_route = (req, res) => {
-    console.log(req.body)
-    route_model.findOneAndUpdate(
-        {_id: req.params.id}, //condition
-        req.body, //new data
-        //{upsert:true} || {new:true},
-        {new:true},
-        (err, data) => {
+    var currentValue = req.place
+    var newValue = req.newValue
+    route_model.findOneAndUpdate({route: currentValue},{$set: {route: newValue}},(err, data) => {
             if(err) {
                 return res.send(err)
             }else{
@@ -18,11 +14,9 @@ let update_route = (req, res) => {
 }
 
 let update_places = (req,res) => {
-    console.log(req.body)
-    route_model.findOneAndUpdate(
-        {_id: req.params.id},
-         req.body,
-        (err,data) => {
+    var currentValue = req.place
+    var newValue = req.newValue
+    route_model.findOneAndUpdate({route: currentValue},{$set: {route: newValue}},(err, data) => {
             if(err) {
                 return res.send(err)
             }else{

@@ -35,7 +35,7 @@ let retrieve_admin = (req,reqPassword, res) => {
                     }
                     res.send(response);
                 })
-                .catch(err => {  
+                .catch(err => {
                     console.log("error dyud bay");
                     response = errorResponse(404, err, "Username not Found!")
                     // res.status(response.status).send(response);

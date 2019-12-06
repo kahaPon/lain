@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import "../Admin.css";
-import swal from 'sweetalert'
 import home from './home.png'
 import Options from '../Options';
 import axios from 'axios'
@@ -19,17 +18,14 @@ class AddRoute extends Component {
     }
     onclickHandler(e) {
         e.preventDefault();
-        let list = []
         var add = {
             route: this.state.rout,
             places: this.state.place.split(", ")
         }
         console.log("naa ko dri!!1");
         if (this.state.city !== "" && this.state.rout !== "" && this.state.place !== "") {
-            console.log("naa nsad ko diri");
             axios.post('http://localhost:3000/jeepme/createroute', add)
                 .then(res => {
-                    console.log("inglahos");
                     console.log(res.data)
                 })
                 .catch(err => {
