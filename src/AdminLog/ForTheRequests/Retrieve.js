@@ -20,7 +20,7 @@ class Retrieve extends Component {
         this.setState({ home: true })
     }
     componentDidMount() {
-        var jeepR = [].slice(", ");
+        var jeepR = []
         axios.get('http://localhost:3000/jeepme/retrieveAll')
             .then(response => {
                 this.setState({
