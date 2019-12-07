@@ -20,7 +20,7 @@ class AddRoute extends Component {
         e.preventDefault();
         var add = {
             route: this.state.rout,
-            places: this.state.place.split(", ")
+            places: this.state.place.split(" - ")
         }
         console.log("naa ko dri!!1");
         if (this.state.city !== "" && this.state.rout !== "" && this.state.place !== "") {

@@ -60,7 +60,7 @@ class Login extends Component {
       
 
     render() {
-        if (!this.state.situation) {
+        if (this.state.situation) {
             return (
                 <center>
                     <div className="card">

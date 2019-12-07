@@ -43,7 +43,7 @@ routes.route("/deleteplaces/:places").delete((req,res) => {
     dlt.delete_places(req.params.places,res);
 })
 
-//retrieving routes
+//retrieving routess
 routes.route("/retrieveAll").get((req,res) => {
     retrieve.retrieveAll_route(req,res);
 })
