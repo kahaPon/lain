@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./Admin.css";
 import Options from './Options';
-// import swal from 'sweetalert';
+import swal from 'sweetalert';
 // import req from "../helper/api";
 import axios from 'axios';
 // import api from './helper/api';
@@ -42,12 +42,20 @@ class Login extends Component {
                     this.setState({ situation: true });
                     localStorage.setItem("token", res.data.data.body.accessToken)
                 } else {
-                    console.log('Invalid Username!') 
-                    // password = 'Invalid Password!'
+                    swal({
+                        icon: "error",
+                        title: "You've entered an invalid credentials!",
+                        text: "Check if you've entered a valid credentials "
+                    })
+                    
                 }
             })
         }else{
-            console.log("fgsged")
+            swal({
+                icon: "error", 
+                title: "The input field is Empty",
+                text: "You need to fulfill the input field!"
+            })
         }
     }
 

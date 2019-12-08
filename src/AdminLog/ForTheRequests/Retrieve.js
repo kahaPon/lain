@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import home from './home.png'
 import Options from '../Options';
 import axios from 'axios'
-import swal from 'sweetalert'
 import Table from 'react-bootstrap/Table';
 import List from './List';
 
@@ -35,10 +34,6 @@ class Retrieve extends Component {
 
                     });
                 }
-                jeepR.forEach(val => {
-                    console.log(val.route + " = " +val.places)
-                   swal("Cebu City Routes",val.route + " = " +val.places, "success")
-                });
             })
             .catch(error => {
                 console.log(error);
@@ -59,7 +54,7 @@ class Retrieve extends Component {
                         <img src={home} alt="Smiley face" onClick={(e) => this.onclickHome(e)} />
                     </div>
                     <div className="table-wrapper">
-                        <h1>List of Routes</h1>
+                        <h1 id="ListRetrieve">List of Routes</h1>
                     <Table striped bordered hover>
                         <thead>
                             <tr>

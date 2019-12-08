@@ -117,3 +117,22 @@ button:hover {
       width: 50px;
       float: right;
   }
+
+
+  /* Retrieve all the Data */
+  .table-wrapper {
+    background-color:rgba(255,255,255,0.6);
+  }
+
+  #ListRetrieve {
+      width: 650px;
+      height: 80px;
+  }
+
+  th {
+      color: black;
+  }
+
+  td {
+      color: black
+  }

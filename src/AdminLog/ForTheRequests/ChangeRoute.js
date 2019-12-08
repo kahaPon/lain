@@ -42,13 +42,36 @@ class DeleteRoute extends Component {
                     title: "Change the " + toUpdate,
                     content: "input"
                 }).then((values) => {
-                    axios.post("http://localhost:3000/jeepme/updateplaces", { place: toUpdate, newValue: values })
-                        .then(res => {
-                            console.log(res)
-                        })
-                        .catch(err => {
-                            return err
-                        })
+                    swal({
+                        icon: "info",
+                        title: "Change the route that it passes?",
+                        text: "Click 'OK' if you want to change the route",
+                        buttons: true
+                    }).then((change) => {
+                        if (change) {
+                            swal({
+                                title: "New Value of the route",
+                                content: "input"
+                            }).then((newRouteValue) => {
+                                axios.post("http://localhost:3000/jeepme/updateplaces", { place: toUpdate, newValue: values, newRoute: newRouteValue })
+                                    .then(res => {
+                                        console.log(res)
+                                    })
+                                    .catch(err => {
+                                        return err
+                                    })
+                            })
+                        } else {
+                            axios.post("http://localhost:3000/jeepme/updateplaces", { place: toUpdate, newValue: values })
+                                .then(res => {
+                                    console.log(res)
+                                })
+                                .catch(err => {
+                                    return err
+                                })
+                        }
+                    })
+
                 })
             })
         } else {
@@ -60,13 +83,40 @@ class DeleteRoute extends Component {
                     title: "Change the " + toChangeRoute,
                     content: "input"
                 }).then((values) => {
-                    axios.post("http://localhost:3000/jeepme/updateroute", { place: toChangeRoute, newValue: values })
-                        .then(res => {
-                            console.log(res)
-                        })
-                        .catch(err => {
-                            return err
-                        })
+                    swal({
+                        icon: "info",
+                        title: "Change the route that it passes?",
+                        text: "Click 'OK' if you want to change the route",
+                        buttons: true
+                    }).then((change) => {
+                        if (change) {
+                            swal({
+                                title: "New Value of the route",
+                                content: "input"
+                            }).then((newRouteValue) => {
+                                axios.post("http://localhost:3000/jeepme/updateroute", { place: toChangeRoute, newValue: values, newRoute: newRouteValue })
+                                    .then(res => {
+                                        console.log(res)
+                                    })
+                                    .catch(err => {
+                                        return err
+                                    })
+                            })
+                        } else {
+                            swal({
+                                icon: "success",
+                                title: "Route has been changed successfully!",
+                                text: "Check the retrieve to see the changes you've made"
+                            })
+                            axios.post("http://localhost:3000/jeepme/updateroute", { place: toChangeRoute, newValue: values })
+                                .then(res => {
+                                    console.log(res)
+                                })
+                                .catch(err => {
+                                    return err
+                                })
+                        }
+                    })
                 })
             })
         }

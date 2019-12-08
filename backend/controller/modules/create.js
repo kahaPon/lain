@@ -1,9 +1,8 @@
 const route_model = require('../../model/route')
+const place_model = require('../../model/newplace')
 
 let create_route =  (req, res) => {
-    // console.log("hey there");
     let route = new route_model(req);
-    // console.log("hey there");
     route.save((err, data) => {
         if (err) {
             return res.send(err)
@@ -17,4 +16,11 @@ let create_route =  (req, res) => {
     })
 }
 
-module.exports = { create_route } 
+let create_places =  (req, res) => {
+    let places = new place_model(req.body);
+    places.save().then(response=> {
+        return res.send(response)
+    })
+}
+
+module.exports = { create_route, create_places} 

@@ -11,13 +11,12 @@ const admin_info = require('../controller/modules/admin_data')
 
 //creating routes
 routes.route("/createroute").post((req, res) => {
-    console.log('asa na ka');
     create.create_route(req.body,res);
 })
 
-// routes.route("/createplaces").post((req,res) => {
-//     create.create_places(req,res);
-// })
+routes.route("/createplaces").post((req,res) => {
+    create.create_places(req,res);
+})
 
 
 //creating admin default account
